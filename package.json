@@ -1,0 +1,35 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "Backend for diploma",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "npx eslint .",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mikhail-Chernyshev/movies-explorer-api.git"
+  },
+  "author": "Mikhail Chernyshev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mikhail-Chernyshev/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/Mikhail-Chernyshev/movies-explorer-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "celebrate": "^15.0.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.5",
+    "validator": "^13.7.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

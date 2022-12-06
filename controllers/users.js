@@ -88,7 +88,7 @@ const editMe = async (req, res, next) => {
     }
     return res.send(user);
   } catch (err) {
-    if (error.code === 11000) {
+    if (err.code === 11000) {
       return next(new CastError("Email must be unique"));
     }
     // if (err instanceof mongoose.Error.CastError) {

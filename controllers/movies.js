@@ -20,6 +20,7 @@ const getMovies = async (req, res, next) => {
 
 const deleteMovie = async (req, res, next) => {
   try {
+    console.log(req.params)
     const movie = await Movie.findById(req.params.movieId);
     if (movie == null) {
       return next(new NotFoundError("Movie with this id not found"));

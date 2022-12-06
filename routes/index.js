@@ -13,8 +13,8 @@ router.use("/users", require("./users"));
 
 router.use("/movies", require("./movies"));
 
-// router.use("*",  (req, res, next) => {
-//   next(new NotFoundError("Маршрут не найден"));
-// });
+router.use("*",  (req, res, next) => {
+  next(new NotFoundError("Маршрут не найден"));
+});
 
 module.exports = router;

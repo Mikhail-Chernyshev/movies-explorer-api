@@ -25,7 +25,7 @@ const movieSchema = new Schema(
       validate: { validator: (value) => validator.isURL(value) },
     },
     owner: { type: mongoose.Types.ObjectId, required: true, ref: "user" },
-    // movieId: { type: String, required: true },
+    movieId: { type: String, required: true },
     nameRU: { type: String, required: true },
     nameEN: { type: String, required: true },
   },

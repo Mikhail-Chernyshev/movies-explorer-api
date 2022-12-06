@@ -12,12 +12,12 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { PORT = 3001, MONGO_URL = "mongodb://localhost:27017/bitfilmsdb" } =
   process.env;
 // const limiter = require("./utils/limiter");
-const rateLimit = require("express-rate-limit");
+// const rateLimit = require("express-rate-limit");
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
+// const limiter = rateLimit({
+  // windowMs: 15 * 60 * 1000,
+  // max: 100,
+// });
 
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(helmet());
-app.use(limiter);
+// app.use(limiter);
 app.use(requestLogger);
 
 app.use("/", apiRouter);

@@ -26,7 +26,7 @@ const getMe = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const { body } = req;
-  const { email, password, name, about, avatar } = body;
+  const { email, password, name } = body;
   bcrypt
     .hash(password, 10)
     .then((hashPassword) =>
@@ -34,11 +34,9 @@ const createUser = (req, res, next) => {
         email,
         password: hashPassword,
         name,
-        about,
-        avatar,
       })
     )
-    .then((data) => res.status(200).send( data.email, data.name ))
+    .then((data) => res.status(200).send({ email, name }))
     .catch((err) => {
       if (err.code === 11000) {
         next(

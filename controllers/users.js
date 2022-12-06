@@ -91,9 +91,9 @@ const editMe = async (req, res, next) => {
     if (err.code === 11000) {
       return next(new CastError("Email must be unique"));
     }
-    // if (err instanceof mongoose.Error.CastError) {
-    //   return next(new CastError("Not correct data"));
-    // }
+    if (err instanceof mongoose.Error.CastError) {
+      return next(new CastError("Not correct data"));
+    }
     if (err.name === "ValidationError") {
       return next(new CastError("Not correct data"));
     }

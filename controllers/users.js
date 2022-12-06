@@ -13,7 +13,7 @@ const {
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getMe = (req, res, next) => {
-  console.log(req)
+  console.log(req);
   User.findById(req.user)
     .then((user) => {
       if (!user) {
@@ -38,8 +38,7 @@ const createUser = (req, res, next) => {
         avatar,
       })
     )
-    .then((data) => res.status(200).send(data))
-    // eslint-disable-next-line consistent-return
+    .then((data) => res.status(200).send( data.email, data.name ))
     .catch((err) => {
       if (err.code === 11000) {
         next(
@@ -58,24 +57,19 @@ const login = (req, res, next) => {
 
   User.findOne({ email })
     .select("+password")
-    // eslint-disable-next-line consistent-return
     .then((user) => {
       if (!user) {
         return next(new AuthError("Wrong email or password"));
       }
-      // eslint-disable-next-line consistent-return
       bcrypt.compare(password, user.password).then((match) => {
         if (!match) {
           return next(new AuthError("Wrong email or password"));
         }
-        // eslint-disable-next-line max-len
         const token = jwt.sign(
           { _id: user._id },
           NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
           { expiresIn: "7d" }
         );
-        // const token = signToken(user.id);
-        // const token = jwt.sign(user.id, SECRET_JWT);
         res.status(200).send({ token, message: "Athorization successful" });
         if (!token) return next(new AuthError("Wrong email or password"));
       });
@@ -89,18 +83,18 @@ const editMe = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(
       req.user,
       { name, email },
-      { new: true, runValidators: true },
+      { new: true, runValidators: true }
     );
     if (user == null) {
-      return next(new NotFoundError('User with this id not found'));
+      return next(new NotFoundError("User with this id not found"));
     }
     return res.send(user);
   } catch (err) {
     if (err instanceof mongoose.Error.CastError) {
-      return next(new CastError('Not correct data'));
+      return next(new CastError("Not correct data"));
     }
-    if (err.name === 'ValidationError') {
-      return next(new CastError('Not correct data'));
+    if (err.name === "ValidationError") {
+      return next(new CastError("Not correct data"));
     }
     next(err);
   }
@@ -109,5 +103,5 @@ module.exports = {
   getMe,
   createUser,
   login,
-  editMe
+  editMe,
 };

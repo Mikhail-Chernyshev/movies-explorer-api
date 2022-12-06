@@ -48,7 +48,7 @@ app.use(auth);
 
 app.use("/users", routesUsers);
 app.use("/movies", routesMovies);
-app.use("*", auth, (req, res, next) => {
+app.use("*", (req, res, next) => {
   next(new NotFoundError("Маршрут не найден"));
 });
 app.use(errorLogger);

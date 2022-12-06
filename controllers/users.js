@@ -83,11 +83,17 @@ const editMe = async (req, res, next) => {
       { name, email },
       { new: true, runValidators: true }
     );
+    // if(email !== unique) {
+
+    // }
     if (user == null) {
       return next(new NotFoundError("User with this id not found"));
     }
     return res.send(user);
   } catch (err) {
+    if (error.name === "MongoError" && error.code === 11000) {
+      return next(new CastError("Email must be unique"));
+    }
     if (err instanceof mongoose.Error.CastError) {
       return next(new CastError("Not correct data"));
     }

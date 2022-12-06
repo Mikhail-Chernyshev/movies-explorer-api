@@ -10,29 +10,14 @@ const getMovies = async (req, res, next) => {
   try {
     const movies = await Movie.find({owner: req.user._id});
     if (movies == null) {
-      return next(new NotFoundError("Card with this owner not found"));
+      return next(new NotFoundError("Movies with this owner not found"));
     }
     return res.send(movies);
   } catch (err) {
     next(err);
   }
 };
-// try {
-//   const card = await Card.findById(req.params.cardId);
-//   if (card == null) {
-//     return next(new NotFoundError('Card with this id not found'));
-//   }
-//   if (card.owner._id.toString() !== req.user._id.toString()) {
-//     return next(new AccessError('You can not delete this card'));
-//   } await card.remove();
-//   return res.send(card);
-// } catch (err) {
-//   if (err instanceof mongoose.Error.CastError) {
-//     return next(new CastError('Not correct data'));
-//   }
-//   next(err);
-// }
-// };
+
 const deleteMovie = async (req, res, next) => {
   try {
     console.log(req.params)
@@ -41,7 +26,7 @@ const deleteMovie = async (req, res, next) => {
       return next(new NotFoundError("Movie with this id not found"));
     }
     if (movie.owner.toString() !== req.user._id.toString()) {
-      return next(new AccessError("You can not delete this card"));
+      return next(new AccessError("You can not delete this movie"));
     }
     await movie.remove();
     return res.send(movie);

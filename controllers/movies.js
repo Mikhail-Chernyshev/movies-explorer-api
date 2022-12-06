@@ -8,8 +8,8 @@ const {
 
 const getMovies = async (req, res, next) => {
   try {
-    const cards = await Movie.find({});
-    return res.send(cards);
+    const movies = await Movie.findById(req.user._id);
+    return res.send(movies);
   } catch (err) {
     next(err);
   }

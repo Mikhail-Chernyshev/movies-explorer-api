@@ -20,11 +20,11 @@ const getMovies = async (req, res, next) => {
 
 const deleteMovie = async (req, res, next) => {
   try {
-    const movie = await Movie.findById(req.params.id);
+    const movie = await Movie.findById(req.params.movieId);
     if (movie == null) {
-      return next(new NotFoundError("Card with this id not found"));
+      return next(new NotFoundError("Movie with this id not found"));
     }
-    if (card.owner._id.toString() !== req.user._id.toString()) {
+    if (movie.owner.toString() !== req.user._id.toString()) {
       return next(new AccessError("You can not delete this card"));
     }
     await movie.remove();

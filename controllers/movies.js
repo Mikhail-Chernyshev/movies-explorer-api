@@ -17,11 +17,26 @@ const getMovies = async (req, res, next) => {
     next(err);
   }
 };
-
+// try {
+//   const card = await Card.findById(req.params.cardId);
+//   if (card == null) {
+//     return next(new NotFoundError('Card with this id not found'));
+//   }
+//   if (card.owner._id.toString() !== req.user._id.toString()) {
+//     return next(new AccessError('You can not delete this card'));
+//   } await card.remove();
+//   return res.send(card);
+// } catch (err) {
+//   if (err instanceof mongoose.Error.CastError) {
+//     return next(new CastError('Not correct data'));
+//   }
+//   next(err);
+// }
+// };
 const deleteMovie = async (req, res, next) => {
   try {
     console.log(req.params)
-    const movie = await Movie.findById(req.params);
+    const movie = await Movie.findById(req.params.movieId);
     if (movie == null) {
       return next(new NotFoundError("Movie with this id not found"));
     }

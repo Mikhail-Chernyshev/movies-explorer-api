@@ -51,6 +51,9 @@ app.use(requestLogger);
 // app.use("/users", routesUsers);
 // app.use("/movies", routesMovies);
 app.use("/", apiRouter);
+app.use("*",  (req, res, next) => {
+  next(new NotFoundError("Маршрут не найден"));
+});
 // app.use("*", (req, res, next) => {
 //   next(new NotFoundError("Маршрут не найден"));
 // });

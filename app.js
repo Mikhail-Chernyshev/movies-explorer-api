@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
-const helmet = require("helmet");
+// const helmet = require("helmet");
 const { errors} = require("celebrate");
 const errorServer = require("./middlewares/error");
 const apiRouter = require("./routes/index");
@@ -20,7 +20,7 @@ mongoose.connect(MONGO_URL, {
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(limiter);
 app.use(requestLogger);
 

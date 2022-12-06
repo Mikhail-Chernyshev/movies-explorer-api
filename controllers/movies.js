@@ -46,7 +46,7 @@ const createMovie = async (req, res, next) => {
       trailerLink,
       nameRU,
       nameEN,
-      thumbNail,
+      thumbnail,
       movieId,
     } = req.body;
     const owner = req.user;
@@ -60,7 +60,7 @@ const createMovie = async (req, res, next) => {
       trailerLink,
       nameRU,
       nameEN,
-      thumbNail,
+      thumbnail,
       movieId,
       owner,
     });

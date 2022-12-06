@@ -19,7 +19,7 @@ const movieSchema = new Schema(
       required: true,
       validate: { validator: (value) => validator.isURL(value) },
     },
-    thumbNail: {
+    thumbnail: {
       type: String,
       required: true,
       validate: { validator: (value) => validator.isURL(value) },

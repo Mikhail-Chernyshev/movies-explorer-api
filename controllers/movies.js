@@ -8,12 +8,9 @@ const {
 
 const getMovies = async (req, res, next) => {
   try {
-    const movies = await Movie.findById(req.user._id);
+    const movies = await Movie.find({owner: req.user._id});
     if (movies == null) {
-      return next(new NotFoundError("Card with this id not found"));
-    }
-    if (movies.owner.toString() !== req.user._id.toString()) {
-      return next(new AccessError("You can not delete this card"));
+      return next(new NotFoundError("Card with this owner not found"));
     }
     return res.send(movies);
   } catch (err) {

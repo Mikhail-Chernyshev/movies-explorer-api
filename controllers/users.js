@@ -43,7 +43,7 @@ const createUser = (req, res, next) => {
           new ErrorRequest("Пользователь с таким email уже зарегистрирован")
         );
       } else if (err.name === "ValidationError") {
-        next(new ValidationError("Wrong name"));
+        next(new ValidationError("Wrong data"));
       } else {
         next(err);
       }
@@ -88,13 +88,13 @@ const editMe = async (req, res, next) => {
     return res.send(user);
   } catch (err) {
     if (err.code === 11000) {
-      return next(new CastError("Email must be unique"));
+      return next(new ErrorRequest("Email must be unique"));
     }
     if (err instanceof mongoose.Error.CastError) {
       return next(new CastError("Not correct data"));
     }
     if (err.name === "ValidationError") {
-      return next(new CastError("Not correct data"));
+      return next(new ValidationError("Not correct data"));
     }
     next(err);
   }

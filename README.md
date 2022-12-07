@@ -1,2 +1,4 @@
 # movies-explorer-api
-Backend for diploma
+Backend for diploma Milhail Chernyshev
+Link: https://api.diplomachernyshev.nomoredomains.club
+

@@ -8,7 +8,7 @@ router.post("/signup", validateRegister, createUser);
 
 router.post("/signin", validateLogin, login);
 
-// router.use(auth);
+router.use(auth);
 
 router.use("/users", require("./users"));
 

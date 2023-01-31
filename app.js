@@ -16,7 +16,7 @@ const limiter = require("./utils/limiter");
 const corsCan = {
   Origin: [
     "http://localhost:3000",
-    "https://diplomachernyshev.nomoredomains.club",
+    "http://diplomachernyshev.nomoredomains.club",
   ],
 };
 

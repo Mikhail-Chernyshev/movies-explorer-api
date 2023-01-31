@@ -13,7 +13,13 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { PORT = 3001, MONGO_URL = "mongodb://localhost:27017/bitfilmsdb" } =
   process.env;
 const limiter = require("./utils/limiter");
-const corsCan = { Origin: "https://diplomachernyshev.nomoredomains.club" };
+const corsCan = {
+  origin: [
+    "https://diplomachernyshev.nomoredomains.club",
+    "http://diplomachernyshev.nomoredomains.club",
+    "http://localhost:3000",
+  ],
+};
 
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,

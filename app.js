@@ -14,10 +14,7 @@ const { PORT = 3001, MONGO_URL = "mongodb://localhost:27017/bitfilmsdb" } =
   process.env;
 const limiter = require("./utils/limiter");
 const corsCan = {
-  Origin: [
-    "http://localhost:3000",
-    "http://diplomachernyshev.nomoredomains.club",
-  ],
+  Origin: "http://diplomachernyshev.nomoredomains.club",
 };
 
 mongoose.connect(MONGO_URL, {
